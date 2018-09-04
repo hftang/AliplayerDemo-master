@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.action.extension" value="action"/>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+
+    <package name="sturts" extends="struts-default" namespace="/">
+
+
+        <!-- 自定义拦截器-->
+        <interceptors>
+            <interceptor name="interceptors01" class="com.hftang.struts.interceptor.MyInterceptor01"/>
+            <interceptor name="interceptors02" class="com.hftang.struts.interceptor.MyInterceptor02"/>
+        </interceptors>
+
+
+        <global-results>
+            <result name="input">input_request.jsp</result>
+        </global-results>
+
+
+        <action name="request_action" class="RequestAction" method="receiveMethod">
+            <result name="success">successpage.jsp</result>
+        </action>
+
+        <action name="request_second" method="requestMethod" class="SecondRequestAction">
+            <result name="success">successpage.jsp</result>
+        </action>
+
+        <action name="request_three" method="executedMethod" class="ThreeRequest">
+            <result name="success">successpage.jsp</result>
+        </action>
+
+        <action name="request_datas" method="handleDatas" class="com.hftang.struts.demo.ActionDemo01">
+
+
+        </action>
+
+        <action name="handler_datas02" method="handlerDatas" class="com.hftang.struts.demo.ActionDemo02"></action>
+
+        <action name="handleMsg_request" class="com.hftang.struts.demo.ActionDemo03" method="handleMsg"></action>
+
+        <action name="handle_input" method="getMode" class="com.hftang.struts.demo.ActionDemo04"/>
+
+        <action name="product_action" class="com.hftang.struts.demo.ProductAction" method="getObj"></action>
+
+        <action name="get_map_action" method="getMapMethod" class="com.hftang.struts.demo.ActionMap"></action>
+
+
+        <action name="handle_valuestack" class="com.hftang.struts.demo.OgnlValueStackAction" method="handleValueStack">
+            <result name="result">result.jsp</result>
+        </action>
+
+        <action name="handle_hello" class="com.hftang.struts.demo.OgnlvalueStack02" method="handleValueStack">
+            <result name="result">result.jsp</result>
+        </action>
+
+
+        <action name="request_interceptor" method="doSomeThings"
+                class="com.hftang.struts.demo.CustomerInterceptorAction">
+
+
+            <result name="successpage">successpage.jsp</result>
+
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <interceptor-ref name="interceptors01"></interceptor-ref>
+            <interceptor-ref name="interceptors02"></interceptor-ref>
+
+
+        </action>
+
+    </package>
+</struts>

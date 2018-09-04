@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+
+
+    <servlet>
+        <servlet-name>student</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletStudent</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>student</servlet-name>
+        <url-pattern>/student_servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_servlet</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletAdd</servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_servlet</servlet-name>
+        <url-pattern>/add_servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete_servlet</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletDelete</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>delete_servlet</servlet-name>
+        <url-pattern>/delete_servlet</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>edit_servlet</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletEdit</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>edit_servlet</servlet-name>
+        <url-pattern>/servlet_edit</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>update</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update</servlet-name>
+        <url-pattern>/update_servlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>query</servlet-name>
+        <servlet-class>com.hftang.servlet.ServletQuery</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>query</servlet-name>
+        <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+
+
+
+
+</web-app>
