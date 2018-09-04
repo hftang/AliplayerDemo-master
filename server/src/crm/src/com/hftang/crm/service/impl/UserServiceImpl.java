@@ -7,7 +7,7 @@ import com.hftang.crm.utils.MD5Utils;
 import org.springframework.transaction.annotation.Transactional;
 
 
-//添加事务 在 业务上
+//添加事务 在 业务上 有
 
 @Transactional
 public class UserServiceImpl implements UserService {
