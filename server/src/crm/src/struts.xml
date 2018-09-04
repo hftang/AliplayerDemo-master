@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
-	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-	"http://struts.apache.org/dtds/struts-2.3.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<!-- 配置Struts2的常量 -->
-	<constant name="struts.action.extension" value="action"/>
-	
+    <!-- 配置Struts2的常量 -->
+    <constant name="struts.action.extension" value="action"/>
+
+    <package name="crm" namespace="/" extends="struts-default">
+		<action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}">
+
+            <result name="login">/login.jsp</result>
+
+        </action>
+
+    </package>
 
 </struts>
