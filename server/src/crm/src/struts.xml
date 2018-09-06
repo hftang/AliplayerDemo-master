@@ -19,6 +19,11 @@
              <result name="saveUI">/jsp/customer/add.jsp</result>
         </action>
 
+        <!--dict-->
+        <action name="baseDict_*" class="com.hftang.crm.web.action.BaseDictAction" method="{1}">
+
+        </action>
+
 
 
     </package>

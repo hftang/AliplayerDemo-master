@@ -418,5 +418,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="fastjson-1.2.49" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

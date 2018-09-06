@@ -52,6 +52,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/spring-core-4.2.4.RELEASE.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/com.springsource.org.apache.commons.logging-1.1.1.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/WEB-INF/lib/log4j-core-2.2.jar" />
+          <element id="library" level="project" name="fastjson-1.2.49" />
         </element>
       </element>
     </root>
