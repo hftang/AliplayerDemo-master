@@ -11,7 +11,7 @@
         </id>
 
         <property name="user_code" column="user_code"></property>
-        <property name="user_name" column=""></property>
+        <property name="user_name" column="user_name"></property>
         <property name="user_password" column="user_password"></property>
         <property name="user_state" column="user_state"></property>
 

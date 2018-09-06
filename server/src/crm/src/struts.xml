@@ -7,11 +7,19 @@
     <constant name="struts.action.extension" value="action"/>
 
     <package name="crm" namespace="/" extends="struts-default">
-		<action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}">
+        <action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}">
 
             <result name="login">/login.jsp</result>
-
+            <result name="success" type="redirect">/index.jsp</result>
         </action>
+
+        <!--customer-->
+        <action name="customer_*" class="com.hftang.crm.web.action.CustomerAction" method="{1}">
+
+             <result name="saveUI">/jsp/customer/add.jsp</result>
+        </action>
+
+
 
     </package>
 

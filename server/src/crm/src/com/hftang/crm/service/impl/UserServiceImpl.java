@@ -24,8 +24,21 @@ public class UserServiceImpl implements UserService {
 
         //对密码进行md5加密
         user.setUser_password(MD5Utils.md5(user.getUser_password()));
+        user.setUser_state("1");
 
 
         userDao.save(user);
+    }
+
+    @Override
+    public User login(User user) {
+
+        //先把密码加密
+        user.setUser_password(MD5Utils.md5(user.getUser_password()));
+
+        User user1 = userDao.login(user);
+
+
+        return user1;
     }
 }

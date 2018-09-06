@@ -4,6 +4,8 @@ import com.hftang.crm.dao.UserDao;
 import com.hftang.crm.domain.User;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import java.util.List;
+
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
 
@@ -11,5 +13,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     public void save(User user) {
 
         this.getHibernateTemplate().save(user);
+    }
+
+    @Override
+    public User login(User user) {
+
+
+        List<User> list = (List<User>) getHibernateTemplate().find("from User where user_code = ? and user_password = ?", user.getUser_code(), user.getUser_password());
+
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
     }
 }

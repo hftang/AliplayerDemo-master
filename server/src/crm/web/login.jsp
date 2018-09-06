@@ -45,6 +45,7 @@
                 </TR>
                 <TR>
                     <TD background=images/login_2.jpg height=300>
+                        <s:actionerror></s:actionerror>
                         <TABLE height=300 cellPadding=0 width=900 border=0>
                             <TBODY>
                             <TR>

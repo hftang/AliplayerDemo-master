@@ -9,6 +9,8 @@
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
+
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>

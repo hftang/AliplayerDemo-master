@@ -43,18 +43,15 @@
         <property name="mappingResources">
             <list>
                 <value>com/hftang/crm/domain/User.hbm.xml</value>
-
+                <value>com/hftang/crm/domain/Customer.hbm.xml</value>
+                <value>com/hftang/crm/domain/BaseDict.hbm.xml</value>
             </list>
-
         </property>
-
-
     </bean>
 
     <!--配置action-->
 
     <bean id="userAction" class="com.hftang.crm.web.action.UserAction" scope="prototype">
-
         <property name="userService" ref="userService"></property>
     </bean>
 
@@ -73,9 +70,9 @@
 
     </bean>
 
-    <!--配置事务管理器-->
+    <!--配置事务管理器 org.springframework.orm.hibernate3.HibernateTransactionManager-->
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
@@ -84,10 +81,40 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 
+    <!--          =============custome============   start        -->
+
+    <!--dao-->
+    <bean id="customerDao" class="com.hftang.crm.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <!--service-->
+    <bean class="com.hftang.crm.service.impl.CustomerServiceImpl" id="customerService">
+        <property name="customerDao" ref="customerDao"></property>
+    </bean>
+    <!--action-->
+    <bean class="com.hftang.crm.web.action.CustomerAction" id="customerAction" scope="prototype">
+        <property name="customerService" ref="customerService"></property>
+    </bean>
+
+    <!--          =============custome============   end       -->
+
+
+    <!--          =============dict============   start        -->
+
+    <bean id="baseDictDao" class="com.hftang.crm.dao.impl.BaseDictDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean class="com.hftang.crm.service.impl.BaseDictServiceImpl" id="baseDictService">
+        <property name="baseDictDao" ref="baseDictDao"></property>
+    </bean>
+
+    <bean class="com.hftang.crm.web.action.BaseDictAction" id="baseDictAction" scope="prototype">
+        <property name="baseDictService" ref="baseDictService"></property>
+    </bean>
 
 
 
-
-
+    <!--          =============dict============   end       -->
 
 </beans>
