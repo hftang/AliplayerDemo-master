@@ -11,4 +11,6 @@ public interface CustomerDao {
     Integer findCount(DetachedCriteria detachedCriteria);
 
     List<Customer> findByPage(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
+
+    Customer findById(Long cust_id);
 }

@@ -13,6 +13,7 @@
 
         <property name="cust_phone" column="cust_phone"></property>
         <property name="cust_mobile" column="cust_mobile"></property>
+        <property name="cust_img" column="cust_img"></property>
 
         <many-to-one name="baseDictSource" class="com.hftang.crm.domain.BaseDict" column="cust_source"></many-to-one>
         <many-to-one name="baseDictIndustry" class="com.hftang.crm.domain.BaseDict"

@@ -8,4 +8,6 @@ public interface CustomerService {
     void save(Customer customer);
 
     PageBean<Customer> findByPage(DetachedCriteria detachedCriteria, Integer currentpage, Integer pageSize);
+
+    Customer findById(Long cust_id);
 }

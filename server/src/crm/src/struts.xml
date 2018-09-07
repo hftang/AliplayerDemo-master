@@ -5,6 +5,8 @@
 <struts>
     <!-- 配置Struts2的常量 -->
     <constant name="struts.action.extension" value="action"/>
+    <!--设置上传图片的大小 一个表单中总图片的大小 常量 5M-->
+    <constant name="struts.multipart.maxSize" value="5242880"/>
 
     <package name="crm" namespace="/" extends="struts-default">
         <action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}">
@@ -16,14 +18,28 @@
         <!--customer-->
         <action name="customer_*" class="com.hftang.crm.web.action.CustomerAction" method="{1}">
 
-             <result name="saveUI">/jsp/customer/add.jsp</result>
+            <result name="saveUI">/jsp/customer/add.jsp</result>
+            <result name="findAll">/jsp/customer/list.jsp</result>
+            <result name="saveSuccess" type="redirectAction">customer_findAll.action</result>
+            <!--出错 是 input 错误 所以配置-->
+            <result name="input">/jsp/customer/add.jsp</result>
+
+
+            <!--给customer设置拦截器-->
+
+            <interceptor-ref name="defaultStack">
+                <!--设置一张图片的大小-->
+                <param name="fileUpload.maxmumSize">2097152</param>
+                <!--设置 上传文件的类型 多种文件类型 用 逗号 分开 ,.txt,.bmp-->
+                <param name="fileUpload.allowedExtensions">.jpg</param>
+            </interceptor-ref>
+
         </action>
 
         <!--dict-->
         <action name="baseDict_*" class="com.hftang.crm.web.action.BaseDictAction" method="{1}">
 
         </action>
-
 
 
     </package>

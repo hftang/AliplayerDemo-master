@@ -50,4 +50,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         return pageBean;
     }
+
+    @Override
+    public Customer findById(Long cust_id) {
+
+     Customer customer=   customerDao.findById(cust_id);
+
+        return customer;
+    }
 }

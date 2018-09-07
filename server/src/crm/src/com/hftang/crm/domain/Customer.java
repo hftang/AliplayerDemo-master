@@ -20,6 +20,15 @@ public class Customer {
 //	private String cust_level;
 	private String cust_phone;
 	private String cust_mobile;
+	private String cust_img;
+
+	public String getCust_img() {
+		return cust_img;
+	}
+
+	public void setCust_img(String cust_img) {
+		this.cust_img = cust_img;
+	}
 
 	//在多的一端 保持对象
 	private BaseDict baseDictSource;
