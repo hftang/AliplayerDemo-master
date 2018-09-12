@@ -26,9 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public PageBean<Customer> findByPage(DetachedCriteria detachedCriteria, Integer currentpage, Integer pageSize) {
-
         PageBean<Customer> pageBean = new PageBean<>();
-
         //封装当前得页数
         pageBean.setCurrentPage(currentpage);
         //封装每页显示的记录数
@@ -36,26 +34,40 @@ public class CustomerServiceImpl implements CustomerService {
         //封装总记录数
         Integer totalCount = customerDao.findCount(detachedCriteria);
         pageBean.setTotalCount(totalCount);
-
         //封装总页数
         Double tc = totalCount.doubleValue();
         Double num = Math.ceil(tc / pageSize);
         pageBean.setTotalPage(num.intValue());
-
         //每页显示数据的集合
         Integer begin = (currentpage - 1) * pageSize;
         List<Customer> list = customerDao.findByPage(detachedCriteria, begin, pageSize);
         pageBean.setList(list);
-
-
         return pageBean;
     }
 
     @Override
     public Customer findById(Long cust_id) {
-
-     Customer customer=   customerDao.findById(cust_id);
-
+        Customer customer = customerDao.findById(cust_id);
         return customer;
+    }
+
+    @Override
+    public void delete(Customer customer) {
+        customerDao.delete(customer);
+
+    }
+
+    @Override
+    public void update(Customer customer) {
+        customerDao.update(customer);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+
+     List<Customer> list=   customerDao.findAll();
+
+
+        return list;
     }
 }

@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,34 +15,23 @@
     <script>
 
         $(function () {
-
             //来源
             $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action",
                 {"dict_type_code": "002"},
                 function (data) {
-
                     $(data).each(function (i, n) {
-
                         $("#cust_source").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>")
-
                     })
-
                 },
                 "json"
             )
-
             //级别
-
             $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action",
                 {"dict_type_code": "006"},
                 function (data) {
-
                     $(data).each(function (i, n) {
-
                         $("#cust_level").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>")
-
                     })
-
                 },
                 "json"
             )
@@ -50,13 +40,9 @@
             $.post("${pageContext.request.contextPath }/baseDict_findByTypeCode.action",
                 {"dict_type_code": "001"},
                 function (data) {
-
                     $(data).each(function (i, n) {
-
                         $("#cust_industry").append("<option value='" + n.dict_id + "'>" + n.dict_item_name + "</option>")
-
                     })
-
                 },
                 "json"
             )
@@ -69,9 +55,12 @@
     <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+<%--出错 设置出错信息显示 input--%>
+<s:actionerror></s:actionerror>
+<s:fielderror></s:fielderror>
 <FORM id=form1 name=form1
       action="${pageContext.request.contextPath }/customer_save.action"
-      method=post>
+      method=post enctype="multipart/form-data">
 
 
     <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
@@ -149,6 +138,18 @@
                             <INPUT class=textbox id=sChannel2
                                    style="WIDTH: 180px" maxLength=50 name="cust_mobile">
                         </td>
+                    </TR>
+
+                    <%--文件上传--%>
+                    <TR>
+
+
+                        <td>客户资质 ：</td>
+                        <td colspan="3">
+                            <input type="file" name="upload">
+                        </td>
+
+
                     </TR>
 
 

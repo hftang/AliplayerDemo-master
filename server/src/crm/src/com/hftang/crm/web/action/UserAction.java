@@ -1,10 +1,15 @@
 package com.hftang.crm.web.action;
 
+import com.alibaba.fastjson.JSON;
 import com.hftang.crm.domain.User;
 import com.hftang.crm.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.struts2.ServletActionContext;
+
+import java.io.IOException;
+import java.util.List;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 
@@ -43,5 +48,23 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 
     }
+
+    public String findAllUser() {
+
+        List<User> list = userService.findAll();
+
+        Object toJSON = JSON.toJSON(list);
+
+        ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+        try {
+            ServletActionContext.getResponse().getWriter().print(toJSON.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return NONE;
+    }
+
 
 }

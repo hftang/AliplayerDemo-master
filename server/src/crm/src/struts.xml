@@ -34,11 +34,26 @@
                 <param name="fileUpload.allowedExtensions">.jpg</param>
             </interceptor-ref>
 
+            <!--删除客户-->
+            <result name="deleteSuccess" type="redirectAction">customer_findAll.action</result>
+            <!--编辑客户-->
+            <result name="editSuccess">/jsp/customer/edit.jsp</result>
+            <result name="updateSuccess" type="redirectAction">customer_findAll.action</result>
         </action>
 
         <!--dict-->
         <action name="baseDict_*" class="com.hftang.crm.web.action.BaseDictAction" method="{1}">
 
+        </action>
+
+
+        <!--saleVisit-->
+
+        <action name="saleVisit_*" class="com.hftang.crm.web.action.SaleVisitAction" method="{1}">
+
+            <result name="findAll">/jsp/salevisit/list.jsp</result>
+            <result name="saveUI">/jsp/salevisit/add.jsp</result>
+            <result name="saveSuccess" type="redirectAction">saleVisit_findAll.action</result>
         </action>
 
 

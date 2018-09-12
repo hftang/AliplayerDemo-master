@@ -12,6 +12,8 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--开启属性注入的注解-->
+    <context:annotation-config></context:annotation-config>
 
     <!-- 引入外部属性文件=============================== -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -45,6 +47,7 @@
                 <value>com/hftang/crm/domain/User.hbm.xml</value>
                 <value>com/hftang/crm/domain/Customer.hbm.xml</value>
                 <value>com/hftang/crm/domain/BaseDict.hbm.xml</value>
+                <value>com/hftang/crm/domain/SaveVisit.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -114,7 +117,23 @@
     </bean>
 
 
-
     <!--          =============dict============   end       -->
+
+
+    <!--          =============saleVisit============   start        -->
+
+    <bean class="com.hftang.crm.dao.impl.SaleVisitDaoImpl" id="saleVisitDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="saleVisitService" class="com.hftang.crm.service.impl.SaleVisitServiceImpl"></bean>
+
+
+    <bean class="com.hftang.crm.web.action.SaleVisitAction" name="saleVisitAction" scope="prototype">
+
+    </bean>
+
+
+    <!--          =============saleVisit============   end        -->
 
 </beans>
