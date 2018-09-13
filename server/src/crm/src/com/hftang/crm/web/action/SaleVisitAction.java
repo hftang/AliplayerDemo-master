@@ -7,9 +7,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.loader.custom.Return;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 public class SaleVisitAction extends ActionSupport implements ModelDriven<SaveVisit> {
     private SaveVisit saleVisit = new SaveVisit();
@@ -46,17 +48,38 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaveVi
      * saleVisit_findAll
      */
 
+    private Date visit_time;
+    private Date visit_end_time;
+
+    public Date getVisit_time() {
+        return visit_time;
+    }
+
+    public Date getVisit_end_time() {
+        return visit_end_time;
+    }
+
+    public void setVisit_time(Date visit_time) {
+        this.visit_time = visit_time;
+    }
+
+    public void setVisit_end_time(Date visit_end_time) {
+        this.visit_end_time = visit_end_time;
+    }
+
     public String findAll() {
-
         //创建离线查询条件
-
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SaveVisit.class);
-
+        if (saleVisit.getVisit_time() != null) {
+            //大于等于
+            detachedCriteria.add(Restrictions.ge("visit_time", saleVisit.getVisit_time()));
+        }
+        if (visit_end_time != null) {
+            //小于等于
+            detachedCriteria.add(Restrictions.le("visit_time", visit_end_time));
+        }
         PageBean<SaveVisit> pageBean = saleVisitService.findByPage(detachedCriteria, currPage, pageSize);
-
         ActionContext.getContext().getValueStack().push(pageBean);
-
-
         return "findAll";
     }
 
@@ -65,8 +88,6 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaveVi
      */
 
     public String saveUI() {
-
-
         return "saveUI";
     }
 
@@ -75,10 +96,7 @@ public class SaleVisitAction extends ActionSupport implements ModelDriven<SaveVi
      */
 
     public String save() {
-
         saleVisitService.save(saleVisit);
-
-
         return "saveSuccess";
     }
 }

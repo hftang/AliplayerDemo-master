@@ -8,11 +8,28 @@
     <!--设置上传图片的大小 一个表单中总图片的大小 常量 5M-->
     <constant name="struts.multipart.maxSize" value="5242880"/>
 
-    <package name="crm" namespace="/" extends="struts-default">
-        <action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}">
 
+    <package name="crm" namespace="/" extends="struts-default">
+
+        <!--配置 没有登录的拦击器-->
+        <interceptors>
+            <interceptor name="privilegeInterceptor" class="com.hftang.crm.web.interceptor.PrivilegeInterceptor"></interceptor>
+        </interceptors>
+
+        <!--全局页面-->
+
+        <global-results>
+            <result>/login.jsp</result>
+        </global-results>
+
+
+        <action name="user_*" class="com.hftang.crm.web.action.UserAction" method="{1}" >
             <result name="login">/login.jsp</result>
             <result name="success" type="redirect">/index.jsp</result>
+            <interceptor-ref name="privilegeInterceptor">
+                <param name="excludeMethods">regist,login</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
         </action>
 
         <!--customer-->
@@ -25,8 +42,8 @@
             <result name="input">/jsp/customer/add.jsp</result>
 
 
+            <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
             <!--给customer设置拦截器-->
-
             <interceptor-ref name="defaultStack">
                 <!--设置一张图片的大小-->
                 <param name="fileUpload.maxmumSize">2097152</param>
@@ -44,12 +61,18 @@
         <!--dict-->
         <action name="baseDict_*" class="com.hftang.crm.web.action.BaseDictAction" method="{1}">
 
+            <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+
         </action>
 
 
         <!--saleVisit-->
 
         <action name="saleVisit_*" class="com.hftang.crm.web.action.SaleVisitAction" method="{1}">
+
+            <interceptor-ref name="privilegeInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
 
             <result name="findAll">/jsp/salevisit/list.jsp</result>
             <result name="saveUI">/jsp/salevisit/add.jsp</result>

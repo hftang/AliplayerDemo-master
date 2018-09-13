@@ -40,7 +40,6 @@ public class SaleVisitServiceImpl implements SaleVisitService {
         List<SaveVisit> list = saleVisitDao.findByPage(detachedCriteria, begin, pageSize);
         pageBean.setList(list);
 
-
         return pageBean;
 
     }
